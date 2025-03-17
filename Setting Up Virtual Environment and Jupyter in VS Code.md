@@ -18,8 +18,7 @@ python -m venv python_env
 After creating the virtual environment, activate it using the following command:
 
 For Windows:
-```python_env\Scripts\activate
-```
+```python_env\Scripts\activate```
 
 Once activated, you should see (python_env) in the command prompt, indicating that the virtual environment is active.
 
@@ -171,9 +170,9 @@ With this setup, you now have:
 -----
 
 ### **Additional Notes**
-- Virtual Environment Activation: Remember to activate your virtual environment every time you work on this project. Run python_env\Scripts\activate (Windows) or source python_env/bin/activate (macOS/Linux) before working.
+- **Virtual Environment Activation**: Remember to activate your virtual environment every time you work on this project. Run python_env\Scripts\activate (Windows) or source python_env/bin/activate (macOS/Linux) before working.
 
-- Managing Dependencies: Whenever you install new packages, don’t forget to update the requirements.txt by running pip freeze > requirements.txt again.
+- **Managing Dependencies**: Whenever you install new packages, don’t forget to update the requirements.txt by running pip freeze > requirements.txt again.
 
 
 
