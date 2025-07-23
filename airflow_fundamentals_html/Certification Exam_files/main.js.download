@@ -1,0 +1,606 @@
+(function(factory) {
+  typeof define === "function" && define.amd ? define(factory) : factory();
+})(function() {
+  "use strict";
+  const main = "";
+  function setupHeaderNavigation() {
+    const headerLeft = document.querySelector("#header-left");
+    if (!document.querySelector(".as-header-nav")) {
+      const headerRight = document.querySelector("#header-right");
+      const headerNavItems = [
+        {
+          id: "modules",
+          title: "Modules",
+          url: "/page/all-modules",
+          icon: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path opacity="0.2" d="M27 6H5C4.73478 6 4.48043 6.10536 4.29289 6.29289C4.10536 6.48043 4 6.73478 4 7V21C4 21.2652 4.10536 21.5196 4.29289 21.7071C4.48043 21.8946 4.73478 22 5 22H27C27.2652 22 27.5196 21.8946 27.7071 21.7071C27.8946 21.5196 28 21.2652 28 21V7C28 6.73478 27.8946 6.48043 27.7071 6.29289C27.5196 6.10536 27.2652 6 27 6ZM14 18V10L20 14L14 18Z" />
+        <path d="M20.555 13.1675L14.555 9.1675C14.4044 9.067 14.2293 9.00928 14.0484 9.00052C13.8675 8.99176 13.6877 9.03227 13.528 9.11774C13.3684 9.20321 13.2349 9.33043 13.1419 9.48581C13.0489 9.6412 12.9999 9.81891 13 10V18C12.9999 18.1811 13.0489 18.3588 13.1419 18.5142C13.2349 18.6696 13.3684 18.7968 13.528 18.8823C13.6877 18.9677 13.8675 19.0082 14.0484 18.9995C14.2293 18.9907 14.4044 18.933 14.555 18.8325L20.555 14.8325C20.6922 14.7412 20.8047 14.6175 20.8825 14.4722C20.9603 14.327 21.001 14.1648 21.001 14C21.001 13.8352 20.9603 13.673 20.8825 13.5278C20.8047 13.3825 20.6922 13.2588 20.555 13.1675ZM15 16.1313V11.875L18.1975 14L15 16.1313ZM27 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V21C3 21.5304 3.21071 22.0391 3.58579 22.4142C3.96086 22.7893 4.46957 23 5 23H27C27.5304 23 28.0391 22.7893 28.4142 22.4142C28.7893 22.0391 29 21.5304 29 21V7C29 6.46957 28.7893 5.96086 28.4142 5.58579C28.0391 5.21071 27.5304 5 27 5ZM27 21H5V7H27V21ZM29 26C29 26.2652 28.8946 26.5196 28.7071 26.7071C28.5196 26.8946 28.2652 27 28 27H4C3.73478 27 3.48043 26.8946 3.29289 26.7071C3.10536 26.5196 3 26.2652 3 26C3 25.7348 3.10536 25.4804 3.29289 25.2929C3.48043 25.1054 3.73478 25 4 25H28C28.2652 25 28.5196 25.1054 28.7071 25.2929C28.8946 25.4804 29 25.7348 29 26Z" />
+      </svg>`
+        },
+        {
+          id: "paths",
+          title: "Learning Paths",
+          url: "/page/learning-paths",
+          icon: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path opacity="0.2" d="M14 10C14 10.7911 13.7654 11.5645 13.3259 12.2223C12.8864 12.8801 12.2616 13.3928 11.5307 13.6955C10.7998 13.9983 9.99556 14.0775 9.21964 13.9231C8.44372 13.7688 7.73098 13.3878 7.17157 12.8284C6.61216 12.269 6.2312 11.5563 6.07686 10.7804C5.92252 10.0044 6.00173 9.20017 6.30448 8.46927C6.60723 7.73836 7.11992 7.11365 7.77772 6.67412C8.43552 6.2346 9.20888 6 10 6C11.0609 6 12.0783 6.42143 12.8284 7.17157C13.5786 7.92172 14 8.93914 14 10ZM22 14C22.7911 14 23.5645 13.7654 24.2223 13.3259C24.8801 12.8864 25.3928 12.2616 25.6955 11.5307C25.9983 10.7998 26.0775 9.99556 25.9231 9.21964C25.7688 8.44372 25.3878 7.73098 24.8284 7.17157C24.269 6.61216 23.5563 6.2312 22.7804 6.07686C22.0044 5.92252 21.2002 6.00173 20.4693 6.30448C19.7384 6.60723 19.1136 7.11992 18.6741 7.77772C18.2346 8.43552 18 9.20888 18 10C18 11.0609 18.4214 12.0783 19.1716 12.8284C19.9217 13.5786 20.9391 14 22 14ZM10 18C9.20888 18 8.43552 18.2346 7.77772 18.6741C7.11992 19.1136 6.60723 19.7384 6.30448 20.4693C6.00173 21.2002 5.92252 22.0044 6.07686 22.7804C6.2312 23.5563 6.61216 24.269 7.17157 24.8284C7.73098 25.3878 8.44372 25.7688 9.21964 25.9231C9.99556 26.0775 10.7998 25.9983 11.5307 25.6955C12.2616 25.3928 12.8864 24.8801 13.3259 24.2223C13.7654 23.5645 14 22.7911 14 22C14 20.9391 13.5786 19.9217 12.8284 19.1716C12.0783 18.4214 11.0609 18 10 18ZM22 18C21.2089 18 20.4355 18.2346 19.7777 18.6741C19.1199 19.1136 18.6072 19.7384 18.3045 20.4693C18.0017 21.2002 17.9225 22.0044 18.0769 22.7804C18.2312 23.5563 18.6122 24.269 19.1716 24.8284C19.731 25.3878 20.4437 25.7688 21.2196 25.9231C21.9956 26.0775 22.7998 25.9983 23.5307 25.6955C24.2616 25.3928 24.8864 24.8801 25.3259 24.2223C25.7654 23.5645 26 22.7911 26 22C26 20.9391 25.5786 19.9217 24.8284 19.1716C24.0783 18.4214 23.0609 18 22 18Z" />
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.22215 5.84265C8.0444 5.29325 9.0111 5 10 5C11.3261 5 12.5979 5.52679 13.5355 6.46447C14.2339 7.16285 14.7044 8.04656 14.899 9H17.101C17.23 8.368 17.4808 7.76374 17.8427 7.22215C18.3921 6.39991 19.173 5.75904 20.0866 5.3806C21.0002 5.00217 22.0055 4.90315 22.9755 5.09608C23.9454 5.289 24.8363 5.76521 25.5355 6.46447C26.2348 7.16373 26.711 8.05465 26.9039 9.02455C27.0969 9.99446 26.9978 10.9998 26.6194 11.9134C26.241 12.827 25.6001 13.6079 24.7779 14.1573C24.2363 14.5192 23.632 14.77 23 14.899V17.101C23.9534 17.2956 24.8372 17.7661 25.5355 18.4645C26.4732 19.4022 27 20.6739 27 22C27 22.9889 26.7068 23.9556 26.1574 24.7779C25.6079 25.6001 24.8271 26.241 23.9134 26.6194C22.9998 26.9978 21.9945 27.0969 21.0245 26.9039C20.0546 26.711 19.1637 26.2348 18.4645 25.5355C17.7711 24.8422 17.2971 23.9604 17.101 23H14.899C14.77 23.632 14.5192 24.2363 14.1573 24.7779C13.6079 25.6001 12.827 26.241 11.9134 26.6194C10.9998 26.9978 9.99446 27.0969 9.02455 26.9039C8.05465 26.711 7.16373 26.2348 6.46447 25.5355C5.76521 24.8363 5.289 23.9454 5.09608 22.9755C4.90315 22.0055 5.00217 21.0002 5.3806 20.0866C5.75904 19.173 6.39991 18.3921 7.22215 17.8427C7.76374 17.4808 8.368 17.23 9 17.101V14.899C8.03961 14.7029 7.15783 14.2289 6.46447 13.5355C5.76521 12.8363 5.289 11.9454 5.09608 10.9755C4.90315 10.0055 5.00217 9.00022 5.3806 8.08659C5.75904 7.17295 6.39991 6.39206 7.22215 5.84265ZM11 14.899V17.101C11.9534 17.2956 12.8372 17.7661 13.5355 18.4645C14.2339 19.1629 14.7044 20.0466 14.899 21H17.101C17.1645 20.6888 17.2579 20.3829 17.3806 20.0866C17.759 19.173 18.3999 18.3921 19.2222 17.8427C19.7637 17.4808 20.368 17.23 21 17.101V14.899C20.0466 14.7044 19.1629 14.2339 18.4645 13.5355C17.7661 12.8372 17.2956 11.9534 17.101 11H14.899C14.77 11.632 14.5192 12.2363 14.1573 12.7779C13.6079 13.6001 12.827 14.241 11.9134 14.6194C11.6171 14.7421 11.3112 14.8355 11 14.899ZM8.33329 12.4944C8.82664 12.8241 9.40666 13 10 13C10.7957 13 11.5587 12.6839 12.1213 12.1213C12.6839 11.5587 13 10.7957 13 10C13 9.40666 12.8241 8.82664 12.4944 8.33329C12.1648 7.83994 11.6962 7.45543 11.1481 7.22836C10.5999 7.0013 9.99667 6.94189 9.41473 7.05765C8.83279 7.1734 8.29824 7.45912 7.87868 7.87868C7.45912 8.29824 7.1734 8.83279 7.05765 9.41473C6.94189 9.99667 7.0013 10.5999 7.22836 11.1481C7.45543 11.6962 7.83994 12.1648 8.33329 12.4944ZM23.6667 7.50559C23.1734 7.17595 22.5933 7 22 7C21.2044 7 20.4413 7.31607 19.8787 7.87868C19.3161 8.44129 19 9.20435 19 10C19 10.5933 19.1759 11.1734 19.5056 11.6667C19.8352 12.1601 20.3038 12.5446 20.852 12.7716C21.4001 12.9987 22.0033 13.0581 22.5853 12.9424C23.1672 12.8266 23.7018 12.5409 24.1213 12.1213C24.5409 11.7018 24.8266 11.1672 24.9424 10.5853C25.0581 10.0033 24.9987 9.40013 24.7716 8.85195C24.5446 8.30377 24.1601 7.83524 23.6667 7.50559ZM8.33329 24.4944C8.82664 24.8241 9.40666 25 10 25C10.7957 25 11.5587 24.6839 12.1213 24.1213C12.6839 23.5587 13 22.7957 13 22C13 21.4067 12.8241 20.8266 12.4944 20.3333C12.1648 19.8399 11.6962 19.4554 11.1481 19.2284C10.5999 19.0013 9.99667 18.9419 9.41473 19.0576C8.83279 19.1734 8.29824 19.4591 7.87868 19.8787C7.45912 20.2982 7.1734 20.8328 7.05765 21.4147C6.94189 21.9967 7.0013 22.5999 7.22836 23.1481C7.45543 23.6962 7.83994 24.1648 8.33329 24.4944ZM20.3333 24.4944C20.8266 24.8241 21.4067 25 22 25C22.7957 25 23.5587 24.6839 24.1213 24.1213C24.6839 23.5587 25 22.7957 25 22C25 21.4067 24.8241 20.8266 24.4944 20.3333C24.1648 19.8399 23.6962 19.4554 23.1481 19.2284C22.5999 19.0013 21.9967 18.9419 21.4147 19.0576C20.8328 19.1734 20.2982 19.4591 19.8787 19.8787C19.4591 20.2982 19.1734 20.8328 19.0576 21.4147C18.9419 21.9967 19.0013 22.5999 19.2284 23.1481C19.4554 23.6962 19.8399 24.1648 20.3333 24.4944Z" />
+      </svg>`
+        },
+        {
+          id: "certs",
+          title: "Certifications",
+          url: "/page/astronomer-certification",
+          icon: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path opacity="0.2" d="M29 16C29 17.5638 26.7725 18.7438 26.165 20.2113C25.58 21.6263 26.3425 24.0425 25.1925 25.1925C24.0425 26.3425 21.6263 25.58 20.2113 26.165C18.75 26.7725 17.5625 29 16 29C14.4375 29 13.25 26.7725 11.7887 26.165C10.3737 25.58 7.9575 26.3425 6.8075 25.1925C5.6575 24.0425 6.42 21.6263 5.835 20.2113C5.2275 18.75 3 17.5625 3 16C3 14.4375 5.2275 13.25 5.835 11.7887C6.42 10.375 5.6575 7.9575 6.8075 6.8075C7.9575 5.6575 10.375 6.42 11.7887 5.835C13.2562 5.2275 14.4375 3 16 3C17.5625 3 18.75 5.2275 20.2113 5.835C21.6263 6.42 24.0425 5.6575 25.1925 6.8075C26.3425 7.9575 25.58 10.3737 26.165 11.7887C26.7725 13.2562 29 14.4375 29 16Z" />
+        <path d="M28.2325 12.8525C27.7612 12.36 27.2738 11.8525 27.09 11.4062C26.92 10.9975 26.91 10.32 26.9 9.66375C26.8813 8.44375 26.8612 7.06125 25.9 6.1C24.9387 5.13875 23.5562 5.11875 22.3363 5.1C21.68 5.09 21.0025 5.08 20.5938 4.91C20.1488 4.72625 19.64 4.23875 19.1475 3.7675C18.285 2.93875 17.305 2 16 2C14.695 2 13.7162 2.93875 12.8525 3.7675C12.36 4.23875 11.8525 4.72625 11.4062 4.91C11 5.08 10.32 5.09 9.66375 5.1C8.44375 5.11875 7.06125 5.13875 6.1 6.1C5.13875 7.06125 5.125 8.44375 5.1 9.66375C5.09 10.32 5.08 10.9975 4.91 11.4062C4.72625 11.8512 4.23875 12.36 3.7675 12.8525C2.93875 13.715 2 14.695 2 16C2 17.305 2.93875 18.2837 3.7675 19.1475C4.23875 19.64 4.72625 20.1475 4.91 20.5938C5.08 21.0025 5.09 21.68 5.1 22.3363C5.11875 23.5562 5.13875 24.9387 6.1 25.9C7.06125 26.8612 8.44375 26.8813 9.66375 26.9C10.32 26.91 10.9975 26.92 11.4062 27.09C11.8512 27.2738 12.36 27.7612 12.8525 28.2325C13.715 29.0613 14.695 30 16 30C17.305 30 18.2837 29.0613 19.1475 28.2325C19.64 27.7612 20.1475 27.2738 20.5938 27.09C21.0025 26.92 21.68 26.91 22.3363 26.9C23.5562 26.8813 24.9387 26.8612 25.9 25.9C26.8612 24.9387 26.8813 23.5562 26.9 22.3363C26.91 21.68 26.92 21.0025 27.09 20.5938C27.2738 20.1488 27.7612 19.64 28.2325 19.1475C29.0613 18.285 30 17.305 30 16C30 14.695 29.0613 13.7162 28.2325 12.8525ZM26.7887 17.7638C26.19 18.3888 25.57 19.035 25.2412 19.8288C24.9262 20.5913 24.9125 21.4625 24.9 22.3062C24.8875 23.1812 24.8738 24.0975 24.485 24.485C24.0963 24.8725 23.1862 24.8875 22.3062 24.9C21.4625 24.9125 20.5913 24.9262 19.8288 25.2412C19.035 25.57 18.3888 26.19 17.7638 26.7887C17.1388 27.3875 16.5 28 16 28C15.5 28 14.8562 27.385 14.2362 26.7887C13.6163 26.1925 12.965 25.57 12.1713 25.2412C11.4088 24.9262 10.5375 24.9125 9.69375 24.9C8.81875 24.8875 7.9025 24.8738 7.515 24.485C7.1275 24.0963 7.1125 23.1862 7.1 22.3062C7.0875 21.4625 7.07375 20.5913 6.75875 19.8288C6.43 19.035 5.81 18.3888 5.21125 17.7638C4.6125 17.1388 4 16.5 4 16C4 15.5 4.615 14.8562 5.21125 14.2362C5.8075 13.6163 6.43 12.965 6.75875 12.1713C7.07375 11.4088 7.0875 10.5375 7.1 9.69375C7.1125 8.81875 7.12625 7.9025 7.515 7.515C7.90375 7.1275 8.81375 7.1125 9.69375 7.1C10.5375 7.0875 11.4088 7.07375 12.1713 6.75875C12.965 6.43 13.6112 5.81 14.2362 5.21125C14.8612 4.6125 15.5 4 16 4C16.5 4 17.1438 4.615 17.7638 5.21125C18.3838 5.8075 19.035 6.43 19.8288 6.75875C20.5913 7.07375 21.4625 7.0875 22.3062 7.1C23.1812 7.1125 24.0975 7.12625 24.485 7.515C24.8725 7.90375 24.8875 8.81375 24.9 9.69375C24.9125 10.5375 24.9262 11.4088 25.2412 12.1713C25.57 12.965 26.19 13.6112 26.7887 14.2362C27.3875 14.8612 28 15.5 28 16C28 16.5 27.385 17.1438 26.7887 17.7638ZM21.7075 12.2925C21.8005 12.3854 21.8742 12.4957 21.9246 12.6171C21.9749 12.7385 22.0008 12.8686 22.0008 13C22.0008 13.1314 21.9749 13.2615 21.9246 13.3829C21.8742 13.5043 21.8005 13.6146 21.7075 13.7075L14.7075 20.7075C14.6146 20.8005 14.5043 20.8742 14.3829 20.9246C14.2615 20.9749 14.1314 21.0008 14 21.0008C13.8686 21.0008 13.7385 20.9749 13.6171 20.9246C13.4957 20.8742 13.3854 20.8005 13.2925 20.7075L10.2925 17.7075C10.1049 17.5199 9.99944 17.2654 9.99944 17C9.99944 16.7346 10.1049 16.4801 10.2925 16.2925C10.4801 16.1049 10.7346 15.9994 11 15.9994C11.2654 15.9994 11.5199 16.1049 11.7075 16.2925L14 18.5863L20.2925 12.2925C20.3854 12.1995 20.4957 12.1258 20.6171 12.0754C20.7385 12.0251 20.8686 11.9992 21 11.9992C21.1314 11.9992 21.2615 12.0251 21.3829 12.0754C21.5043 12.1258 21.6146 12.1995 21.7075 12.2925Z" />
+      </svg>`
+        },
+        {
+          id: "resources",
+          title: "Resources",
+          icon: `
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path opacity="0.2" d="M28 16C28 18.3734 27.2962 20.6935 25.9776 22.6668C24.6591 24.6402 22.7849 26.1783 20.5922 27.0866C18.3995 27.9948 15.9867 28.2324 13.6589 27.7694C11.3312 27.3064 9.19295 26.1635 7.51472 24.4853C5.83649 22.8071 4.6936 20.6689 4.23058 18.3411C3.76756 16.0133 4.0052 13.6005 4.91345 11.4078C5.8217 9.21509 7.35977 7.34094 9.33316 6.02236C11.3066 4.70379 13.6266 4 16 4C19.1826 4 22.2348 5.26428 24.4853 7.51472C26.7357 9.76515 28 12.8174 28 16Z" />
+          <path d="M17.5 22.5C17.5 22.7967 17.412 23.0867 17.2472 23.3334C17.0824 23.58 16.8481 23.7723 16.574 23.8858C16.2999 23.9993 15.9983 24.0291 15.7074 23.9712C15.4164 23.9133 15.1491 23.7704 14.9393 23.5607C14.7296 23.3509 14.5867 23.0836 14.5288 22.7926C14.471 22.5017 14.5007 22.2001 14.6142 21.926C14.7277 21.6519 14.92 21.4176 15.1667 21.2528C15.4133 21.088 15.7033 21 16 21C16.3978 21 16.7794 21.158 17.0607 21.4393C17.342 21.7206 17.5 22.1022 17.5 22.5ZM16 9C13.2425 9 11 11.0188 11 13.5V14C11 14.2652 11.1054 14.5196 11.2929 14.7071C11.4804 14.8946 11.7348 15 12 15C12.2652 15 12.5196 14.8946 12.7071 14.7071C12.8946 14.5196 13 14.2652 13 14V13.5C13 12.125 14.3463 11 16 11C17.6538 11 19 12.125 19 13.5C19 14.875 17.6538 16 16 16C15.7348 16 15.4804 16.1054 15.2929 16.2929C15.1054 16.4804 15 16.7348 15 17V18C15 18.2652 15.1054 18.5196 15.2929 18.7071C15.4804 18.8946 15.7348 19 16 19C16.2652 19 16.5196 18.8946 16.7071 18.7071C16.8946 18.5196 17 18.2652 17 18V17.91C19.28 17.4913 21 15.6725 21 13.5C21 11.0188 18.7575 9 16 9ZM29 16C29 18.5712 28.2376 21.0846 26.8091 23.2224C25.3807 25.3603 23.3503 27.0265 20.9749 28.0104C18.5995 28.9944 15.9856 29.2518 13.4638 28.7502C10.9421 28.2486 8.6257 27.0105 6.80762 25.1924C4.98953 23.3743 3.75141 21.0579 3.2498 18.5362C2.74819 16.0144 3.00563 13.4006 3.98957 11.0251C4.97351 8.64968 6.63975 6.61935 8.77759 5.1909C10.9154 3.76244 13.4288 3 16 3C19.4467 3.00364 22.7512 4.37445 25.1884 6.81163C27.6256 9.24882 28.9964 12.5533 29 16ZM27 16C27 13.8244 26.3549 11.6977 25.1462 9.88873C23.9375 8.07979 22.2195 6.66989 20.2095 5.83733C18.1995 5.00476 15.9878 4.78692 13.854 5.21136C11.7202 5.6358 9.76021 6.68345 8.22183 8.22183C6.68345 9.7602 5.63581 11.7202 5.21137 13.854C4.78693 15.9878 5.00477 18.1995 5.83733 20.2095C6.66989 22.2195 8.07979 23.9375 9.88873 25.1462C11.6977 26.3549 13.8244 27 16 27C18.9164 26.9967 21.7123 25.8367 23.7745 23.7745C25.8367 21.7123 26.9967 18.9164 27 16Z" />
+        </svg>`,
+          children: [
+            {
+              id: "faqs",
+              title: "FAQs",
+              url: "/page/faqs"
+            },
+            {
+              id: "change-log",
+              title: "Changelog",
+              url: "/page/change-log"
+            }
+          ]
+        }
+      ];
+      let headerNav = document.createElement("nav");
+      headerNav.classList.add("as-header-nav");
+      let headerNavList = document.createElement("ul");
+      headerNavList.classList.add("as-header-nav__list");
+      headerNavItems.forEach((item) => {
+        headerNavList.innerHTML += `
+      <li class="as-header-nav__list-item" id="${item.id}">
+        <a ${item.url ? `href="${item.url}"` : ""}>
+          ${item.icon}
+          ${item.title}
+        </a>
+
+        ${item.children ? ` <ul class="as-header-nav__dropdown" id="${item.id}-dropdown">
+              ${item.children.map((child) => `<li class="as-header-nav__dropdown-item" id="${child.id}"><a href="${child.url}">${child.title}</a></li>`).join("")}
+            </ul > ` : ""}
+      </li>
+    `;
+      });
+      headerNav.append(headerNavList);
+      headerLeft.after(headerNav);
+      let isPathPage = window.skilljarPath || document.querySelector('[data-catalog-page="learning-paths"]');
+      let isCoursePage = window.skilljarCourse;
+      let isCertificationPage = document.querySelector('[data-catalog-page="astronomer-certification"]') || document.querySelector('#main-container[data-course="astronomer-certified-apache-airflow-core-exam"]') || document.querySelector('#main-container[data-course="astronomer-certification-apache-airflow-dag-authoring"]');
+      if (isCoursePage) {
+        document.querySelector(".as-header-nav__list-item#modules").classList.add("as-header-nav--active-page");
+      }
+      if (isPathPage) {
+        document.querySelector(".as-header-nav__list-item#paths").classList.add("as-header-nav--active-page");
+      }
+      if (isCertificationPage) {
+        document.querySelector(".as-header-nav__list-item#modules").classList.remove("as-header-nav--active-page");
+        document.querySelector(".as-header-nav__list-item#certs").classList.add("as-header-nav--active-page");
+      }
+      if (!window.skilljarUser) {
+        const loginLink = headerRight.querySelector(".login-link");
+        loginLink.innerHTML = `
+      <span>Log In</span>
+    `;
+        let createAccountButton = document.createElement("a");
+        createAccountButton.classList.add("as-create-account-button");
+        createAccountButton.setAttribute("href", "/auth/login?next=%2Fauth%2Fcreate");
+        createAccountButton.innerHTML = `
+      <span class="as-button">Create Account</span>
+    `;
+        loginLink.insertAdjacentElement("afterend", createAccountButton);
+      }
+      let mobileMenuToggle = document.createElement("button");
+      mobileMenuToggle.classList.add("as-menu-toggle");
+      mobileMenuToggle.setAttribute("id", "as-menu-toggle");
+      mobileMenuToggle.setAttribute("aria-label", "Open Navigation Menu");
+      mobileMenuToggle.innerHTML = `
+      <div class="as-hamburger as-hamburgerCollapse">
+        <div class="as-hamburgerBox">
+          <div class="as-hamburgerInner"></div>
+        </div>
+      </div>
+    `;
+      headerLeft.after(mobileMenuToggle);
+      let hamburger = document.querySelector(".as-hamburger");
+      let catalogNavLeft = document.querySelector("#catalog-left-nav");
+      mobileMenuToggle.addEventListener("click", () => {
+        mobileMenuToggle && mobileMenuToggle.classList.toggle("isActive");
+        hamburger && hamburger.classList.toggle("isActive");
+        catalogNavLeft && catalogNavLeft.classList.toggle("as-hidden");
+      });
+      headerNavList.after(headerRight);
+    }
+  }
+  function toHoursAndMinutes(totalMinutes) {
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+    return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+  }
+  function setupCourseHero() {
+    let isCurriculumPage = document.querySelector(".sj-page-curriculum") || document.querySelector(".sj-page-detail-course");
+    let isPathPage = document.querySelector(".sj-page-detail-path") || document.querySelector(".sj-page-path");
+    if ((isCurriculumPage || isPathPage) && !document.querySelector(".as-course-hero")) {
+      let setupProgressBar = function() {
+        let courseboxes2 = document.querySelectorAll("a.coursebox-container.course:not(.search-only)");
+        let notches = ``;
+        courseboxes2.forEach((course, i) => {
+          notches += `<div class="as-progress-bar__notch ${i < numCoursesComplete ? "as-progress-bar__notch--completed" : ""}"></div>`;
+        });
+        return `${notches}`;
+      };
+      let content = document.querySelector("#skilljar-content");
+      let courseHero = document.createElement("div");
+      courseHero.classList.add(...["as-course-hero", "row-flow"]);
+      let courseTags = window.skilljarCourse && window.skilljarCourse.tags;
+      let courseDifficulty = window.skilljarCourse && (courseTags.includes("Advanced") && "Advanced" || courseTags.includes("Intermediate") && "Intermediate" || courseTags.includes("Beginner") && "Beginner" || "");
+      let courseTime = document.querySelector(".sj-course-time") ? document.querySelector(".sj-course-time").innerHTML : "";
+      let courseCost = document.querySelector(".storefront-price span") ? document.querySelector(".storefront-price span").innerText.trim() : document.querySelector(".purchase-button-full-text") ? document.querySelector(".purchase-button-full-text").innerText.replace("Purchase | ", "").trim() : "Free";
+      let courseStartButton = document.querySelector(".sj-summary .button.start-button");
+      courseCost === "Register | Available" ? courseCost = "Free" : "";
+      courseCost === "Start" ? courseCost = "Free" : "";
+      let coursePurchaseButton = document.querySelector(".button.purchase-button");
+      coursePurchaseButton ? coursePurchaseButton.innerHTML = coursePurchaseButton.innerHTML.replace(" | Available", "") : "";
+      let courseResumeButton = document.querySelector(".button.resume-button");
+      let lessonsCompletedText = document.querySelector(".sj-text-x-of-y-lessons-completed span");
+      let numberCourses = document.querySelectorAll(".lesson-row") ? document.querySelectorAll(".lesson-row").length : "9";
+      let signInLink = document.querySelector(".login-link.sj-text-sign-in");
+      let courseCompletionDate = window.skilljarCourseProgress && window.skilljarCourseProgress.completed_at !== "" && new Date(window.skilljarCourseProgress.completed_at);
+      let courseCount;
+      let numCoursesComplete = 0;
+      let pathCompleted = false;
+      courseCompletionDate && courseStartButton ? courseStartButton.innerText = "Take Again" : "";
+      const takeAgainButton = document.querySelector("form[action*=reenroll]") ? document.querySelector("form[action*=reenroll]") : null;
+      if (takeAgainButton) {
+        takeAgainButton.addEventListener("submit", (event) => {
+          event.preventDefault();
+        });
+      }
+      let courseboxes = document.querySelectorAll("a.coursebox-container.course:not(.search-only)");
+      if (isPathPage) {
+        let courseTimes = document.querySelectorAll(".as-coursebox__meta-time");
+        let totalPathTime = 0;
+        courseTimes.forEach((course) => {
+          let time = course.innerText.replace("0 hr", "").replace(" min", "").trim();
+          totalPathTime += Number(time);
+        });
+        courseTime = toHoursAndMinutes(totalPathTime);
+        courseCount = window.skilljarPath ? window.skilljarPath.pathItems.length : "";
+        courseboxes.forEach((course) => {
+          course.getAttribute("data-course-status") == "complete" && numCoursesComplete++;
+        });
+        if (courseCount === numCoursesComplete) {
+          pathCompleted = true;
+        }
+      }
+      courseHero.innerHTML = `
+    <div class="as-course-hero__title-wrapper row-flow">
+      <h1 class="as-course-hero__title">${window.skilljarCourse && window.skilljarCourse.title || window.skilljarPath && `${window.skilljarPath.title} Learning Path`}</h1>
+      <p class="as-course-hero__description">${window.skilljarCourse && window.skilljarCourse.short_description || window.skilljarPath && window.skilljarPath.short_description}</p>
+    </div>
+    <div class="as-course-hero__meta">
+      ${courseCount ? `
+      <div class="as-course-hero__course-count">
+        <img src="https://astronomer.github.io/academy-theme/dist/icons/list-dashes.svg" width="32" height="32 alt="" />
+        <span>${courseCount} modules</span>
+      </div>
+      ` : ""}
+
+      ${courseTime ? `
+      <div class="as-course-hero__course-time">
+        <img src="https://astronomer.github.io/academy-theme/dist/icons/clock.svg" width="32" height="32 alt="" />
+        <span>${courseTime}</span>
+      </div>
+      ` : ""}
+      ${courseDifficulty ? `
+      <div class="as-course-hero__course-difficulty">
+        <p>Difficulty Level: <span class="as-difficulty-tag as-tag">${courseDifficulty}</span></p>
+      </div>
+      ` : ""}
+      ${courseCost ? `
+      <div class="as-course-hero__course-cost">
+        <p>Cost: <span class="as-cost-tag as-tag as-tag-filled">${courseCost}</span></p>
+      </div>
+      ` : ""}
+    </div>
+
+    ${isCurriculumPage ? `
+      <div class="as-banner ${courseCompletionDate ? "as-banner--complete" : ""}">
+        <div class="as-course-hero__module-button-wrapper">
+          ${courseStartButton && !courseCompletionDate ? courseStartButton.outerHTML : coursePurchaseButton ? coursePurchaseButton.outerHTML : ""}
+          ${courseResumeButton && !courseCompletionDate ? courseResumeButton.outerHTML : ""}
+          ${courseCompletionDate ? `<img src="https://astronomer.github.io/academy-theme/dist/icons/check-circle-green.svg" width="48" height="48" alt="" />` : ""}
+        </div >
+        <div class="as-course-hero__module-progress">
+          ${coursePurchaseButton && !window.skilljarUser && signInLink !== null ? `Already Registered? ${signInLink && signInLink.outerHTML}` : ""}
+          ${courseStartButton && !courseResumeButton && !courseCompletionDate ? `${numberCourses} lessons in this module.` : ""}
+          ${lessonsCompletedText && !courseCompletionDate && courseResumeButton ? `${lessonsCompletedText.innerText.replace(/(\([\d]*\%\))/gmi, "")} <img src="https://astronomer.github.io/academy-theme/dist/icons/pie2.svg" width="48" height="48" alt="" />` : ""}
+          ${courseCompletionDate ? `You completed this course on ${courseCompletionDate.toLocaleDateString("en-us", { year: "numeric", month: "long", day: "numeric" })}` : ""}
+          ${courseCompletionDate && courseStartButton ? courseStartButton.outerHTML : ""}
+          ${courseCompletionDate && takeAgainButton ? takeAgainButton.outerHTML : ""}
+        </div >
+      </div >
+      ` : ""}
+
+    ${isPathPage ? `
+    <div class="as-banner ${courseCompletionDate || pathCompleted ? "as-banner--complete" : ""} ${!pathCompleted && window.skilljarUser ? "as-banner--in-progress" : ""}">
+      ${courseCompletionDate || pathCompleted ? `
+        <div class="as-flex-container">
+          <img src="https://astronomer.github.io/academy-theme/dist/icons/shooting-star.svg" width="48" height="48" alt="" /> 
+          <p>Congratulations! You completed this Learning Path!</p>
+        </div>
+      ` : ""}
+
+      ${!pathCompleted && window.skilljarUser ? `
+        <p>
+          You've completed ${numCoursesComplete} of ${courseCount} modules in this Learning Path.
+        </p>
+        <div class="as-progress-bar">
+          ${setupProgressBar()}
+        </div>
+      ` : ""}
+
+
+      <div class="as-course-hero__module-button-wrapper">
+        ${courseStartButton && !courseCompletionDate && window.skilljarUser ? courseStartButton.outerHTML : coursePurchaseButton && !window.skilljarUser && numCoursesComplete === 0 ? coursePurchaseButton.outerHTML : ""}
+        ${courseCompletionDate ? `<img src="https://astronomer.github.io/academy-theme/dist/icons/check-circle-green.svg" width="48" height="48" alt="" />` : ""}
+      </div>
+      <div class="as-course-hero__module-progress">
+        ${coursePurchaseButton && !window.skilljarUser && signInLink !== null ? `Already Registered? ${signInLink && signInLink.outerHTML}` : ""}
+      </div>
+    </div >
+      ` : ""}
+  `;
+      content && content.prepend(courseHero);
+    }
+  }
+  function setupCourseOverview() {
+    const tabsContainer = document.querySelector(".section-container.tabs");
+    const curriculumHeader = document.querySelector('[data-header="Curriculum"]');
+    if (tabsContainer && curriculumHeader) {
+      const courseDescription = document.querySelector(".section-container.tabs .course-long-description-header").parentElement.parentElement;
+      courseDescription.setAttribute("data-course-overview", "");
+      tabsContainer.prepend(courseDescription);
+      const curriculumList = document.querySelector("#curriculum-list");
+      curriculumHeader.insertAdjacentElement("afterend", curriculumList);
+      const courseOverview = document.querySelector('[data-course-overview=""]');
+      let courseOverviewSidebar = document.createElement("div");
+      courseOverviewSidebar.classList.add("as-course-overview__sidebar");
+      const pathCard = `
+    <a class="as-module-card as-card as-card--dark" href="/path/airflow-101">
+      <div class="as-module-card__content as-flex-container">
+        <img src="https://astronomer.github.io/academy-theme/dist/icons/module.svg" width="48" height="48" alt="" class="as-module-card__badge" />
+        <p class="as-module-card__text">This module is part of the Airflow 101 Learning Path</p>
+      </div>
+    </a>
+  `;
+      const preRequisitesList = document.querySelector('[data-pre-requisites-list=""]');
+      const preRequisitesCard = `
+    <div class="as-pre-requisites-card as-card as-card--gray">
+      <h2>Prerequisites</h2>
+      ${preRequisitesList.outerHTML}
+    </div>
+  `;
+      const instructorCard = `
+    <div class="as-instructor-card as-card">
+      <h2>Instructor</h2>
+      <div class="as-instructor-card__profile as-flex-container">
+        <img src="https://astronomer.github.io/academy-theme/dist/images/marc-lamberti.jpg" alt="Marc Lamberti" width="64" height="64" class="as-circle" />
+        <p class="as-instructor-card__name">Marc Lamberti</p>
+      </div>
+      <p>Marc is Head of Customer Education at Astronomer and creator of the Astronomer Certification for Apache Airflow Fundamentals. He wants to help data engineers get started with Airflow as easily and smoothly as possible and make sure they have everything they need to implement Airflow in their organizations.</p>
+    </div>
+  `;
+      courseOverviewSidebar.innerHTML = pathCard + preRequisitesCard + instructorCard;
+      courseOverview.append(courseOverviewSidebar);
+    }
+  }
+  function setupCourseBox() {
+    const courseBoxes = document.querySelectorAll("a.coursebox-container.course");
+    if (courseBoxes.length > 0) {
+      let separators = document.querySelectorAll('a.coursebox-container.course[data-tags*="separator"]');
+      if (separators.length > 0) {
+        separators.forEach((item) => {
+          item.innerHTML = item.innerHTML.replace("[separator]", "");
+        });
+      }
+      courseBoxes.forEach((course) => {
+        if (!course.querySelector(".as-coursebox-content")) {
+          let courseBoxContent = course.innerHTML;
+          let wrappedCourseBoxcontent = `<div class="as-coursebox-content">${courseBoxContent}</div>`;
+          course.innerHTML = wrappedCourseBoxcontent;
+          let courseCount = course.querySelector(".course-series-count") ? course.querySelector(".course-series-count").innerText.trim() : "";
+          let courseTags = course.getAttribute("data-tags") || "";
+          let courseDifficulty = courseTags && (courseTags.includes("advanced") && "Advanced" || courseTags.includes("intermediate") && "Intermediate" || courseTags.includes("beginner") && "Beginner" || "");
+          let courseCost = course.querySelector(".storefront-price span") ? course.querySelector(".storefront-price span").innerText.trim() : "";
+          let courseTime = course.querySelector(".course-time span") ? course.querySelector(".course-time span").innerText.trim() : "";
+          let courseMeta = document.createElement("div");
+          courseMeta.classList.add("as-coursebox__meta");
+          courseMeta.innerHTML = `  
+        <div class="as-coursebox__meta-tags as-flex-container">
+          ${courseDifficulty ? `
+            <div class="as-coursebox__meta-difficulty as-tag">
+              ${courseDifficulty}
+            </div>
+          ` : ""}
+  
+          ${courseCost ? `
+            <div class="as-coursebox__meta-cost as-tag as-tag-filled">
+              ${courseCost}
+            </div>
+          ` : ""}
+        </div>
+
+        ${courseCount ? `
+          <div class="as-coursebox__meta-count">
+            ${courseCount}
+          </div>
+        ` : ""}
+
+        ${courseTime ? `
+        <div class="as-coursebox__meta-time">
+          ${courseTime}
+        </div>
+      ` : ""}
+  
+        ${course.dataset.course === "astronomer-certified-apache-airflow-core-exam" ? `
+        <div class="as-coursebox__meta-study-guide as-tag">
+          <a href="https://www.astronomer.io/uploads/Apache-Airflow-Fundamentals-Study-Guide.pdf" target="_blank">Study Guide</a>
+        </div>
+      ` : ""}
+      `;
+          course.append(courseMeta);
+        }
+      });
+    }
+  }
+  function setupPathCourses() {
+    let courseCatalog = document.querySelector("#catalog-courses");
+    let isLearningPath = document.querySelector(".sj-page-detail-path") || document.querySelector(".sj-page-path");
+    if (isLearningPath) {
+      let catalogContainer = document.querySelector(".row.sj-courseboxes-v2 > .columns") || document.querySelector("#catalog-content");
+      catalogContainer.prepend(courseCatalog);
+      document.querySelector(".columns > .catalog-center-width") && document.querySelector(".columns > .catalog-center-width").remove();
+      let courseboxes = document.querySelectorAll("a.coursebox-container.course");
+      courseboxes.forEach((course, i) => {
+        let pathMarker = document.createElement("div");
+        pathMarker.classList.add("as-learning-path__marker");
+        i === courseboxes.length - 1 && pathMarker.classList.add("as-learning-path__marker--last");
+        let courseURL = course.getAttribute("href");
+        let completionStatus = course.getAttribute("data-course-status");
+        let pathMarkerBadge = "https://astronomer.github.io/academy-theme/dist/icons/circle.svg";
+        let pathMarkerMessage = ``;
+        if (completionStatus === "complete") {
+          pathMarkerBadge = "https://astronomer.github.io/academy-theme/dist/icons/check-circle-green.svg";
+          pathMarkerMessage = `
+          <p>You completed this module.</p>
+        `;
+        }
+        if (completionStatus === "registered") {
+          pathMarkerBadge = "https://astronomer.github.io/academy-theme/dist/icons/pie.svg";
+          pathMarkerMessage = `
+          <p>You started this module but have not yet completed it.</p>
+          <a href="${courseURL}" class="as-button">Resume Module</a>
+        `;
+        }
+        if (i === 0 && completionStatus === "unregistered") {
+          pathMarkerBadge = "https://astronomer.github.io/academy-theme/dist/icons/arrow-circle-right.svg";
+          pathMarkerMessage = `
+          <p>This is the first module in this learning path.</p>
+          <a href=${courseURL} class="as-button">Start Module</a>
+        `;
+        }
+        pathMarker.innerHTML = `
+        <div class="as-path-marker__inner">
+          <div class="as-path-marker__status-icon">
+            <img src="${pathMarkerBadge}" width="40" height="40" alt="" />
+          </div>
+          <div class="as-path-marker__text">
+            ${pathMarkerMessage}
+          </div>
+        </div>
+      `;
+        course.insertAdjacentElement("beforebegin", pathMarker);
+      });
+      let courseCount = courseboxes.length;
+      courseCatalog.style.gridTemplateRows = `repeat(${courseCount}, 1fr)`;
+    }
+  }
+  function setupAccordions() {
+    const accordions = document.querySelectorAll(".as-accordion");
+    if (accordions > 0) {
+      accordions.forEach((target) => {
+        target.addEventListener("click", () => {
+          accordions.forEach((accordion) => {
+            accordion !== target && accordion.removeAttribute("open");
+          });
+        });
+      });
+      const expandAllButton = document.createElement("button");
+      const collapseAllButton = document.createElement("button");
+      expandAllButton.classList.add(...["as-button", "as-button--ghost", "as-accordions-expand-all"]);
+      expandAllButton.innerText = "Expand All";
+      expandAllButton.addEventListener("click", () => {
+        accordions.forEach((accordion) => {
+          accordion.setAttribute("open", "");
+        });
+      });
+      collapseAllButton.classList.add(...["as-button", "as-button--ghost", "as-accordions-collapse-all"]);
+      collapseAllButton.innerText = "Collapse All";
+      collapseAllButton.addEventListener("click", () => {
+        accordions.forEach((accordion) => {
+          accordion.removeAttribute("open");
+        });
+      });
+      const accordionsToggleButtons = document.createElement("div");
+      accordionsToggleButtons.classList.add(...["as-container", "as-flex-container", "as-accordions-toggle"]);
+      accordionsToggleButtons.innerHTML = `${expandAllButton.outerHTML} | ${collapseAllButton.outerHTML}`;
+      const accordionsContainer = document.querySelector(".as-accordion").parentElement;
+      accordionsContainer.insertAdjacentElement("beforebegin", accordionsToggleButtons);
+    }
+  }
+  function setupFooter() {
+    let siteFooterContent = document.querySelector("#footer-left");
+    siteFooterContent.innerHTML = `
+      <p>
+        <a class="apache-link" href="https://airflow.apache.org/"
+          >Apache Airflow</a
+        >, Airflow, and the Airflow logo are trademarks of the <a
+          class="apache-link"
+          href="https://apache.org/">Apache Software Foundation</a
+        >. Copyright &copy; Astronomer 2023. All rights
+        reserved.
+      </p>
+`;
+  }
+  function styleProfilePage() {
+    const profilePage = document.querySelector(".sj-page-profile ");
+    if (profilePage) {
+      const profileHeader = profilePage.querySelector(".sj-profile-header-v2");
+      profileHeader.classList.remove(...["text-center", "large-4"]);
+      profileHeader.classList.add("large-12");
+      profileHeader.querySelector("h1").classList.add(...["large-12", "columns"]);
+      profilePage.querySelector(".sj-avatar-data").classList.remove(...["text-center", "columns", "large-4"]);
+      profilePage.querySelectorAll(".sj-table-v2 .text-center").forEach((item) => item.classList.remove("text-center"));
+      let avatarButton = profilePage.querySelector("#change-avatar-button");
+      let avatarContainer = profilePage.querySelector(".sj-avatar-data.sj-avatar-data-v2");
+      avatarButton.querySelector("#upload-new-avatar-button").innerHTML = `
+      <img src="https://astronomer.github.io/academy-theme/dist/icons/pencil.svg" alt="Update" width="24" height="24" />
+    `;
+      avatarContainer.insertAdjacentElement("afterbegin", avatarButton);
+      let badgeFrame = profilePage.querySelector(".widget-iframe");
+      if (badgeFrame) {
+        let badgeFrameInner = badgeFrame.contentDocument || badgeFrame.contentWindow.document;
+        let badgeLinks = badgeFrameInner.querySelectorAll(".widget-table a");
+        badgeLinks.forEach((item) => {
+          item.style.display = "flex";
+          item.style.alignItems = "center";
+          item.style.gap = "1rem";
+        });
+        let badgeEmptyExpire = badgeFrameInner.querySelectorAll("td:empty");
+        badgeEmptyExpire.forEach((item) => item.remove());
+        badgeFrameInner.querySelector("th:nth-child(4)").remove();
+        let badgeDesc = badgeFrameInner.querySelectorAll("td:nth-child(2)");
+        badgeDesc.forEach((item) => {
+          item.remove();
+        });
+        badgeFrameInner.querySelector("th:nth-child(2)").remove();
+        badgeFrame.style.marginTop = "1rem";
+      }
+      let headerNavigationItems = document.querySelectorAll("#header a");
+      headerNavigationItems.forEach((item) => {
+        item.pathname.indexOf("page") > -1 ? item.setAttribute("href", `https://academy.astronomer.io${item.getAttribute("href")}`) : "";
+      });
+    }
+  }
+  function moveModulesSearchBar() {
+    let searchBar = document.querySelector("#catalog-left-nav .search-container");
+    if (searchBar) {
+      let catalogContent = document.querySelector("#catalog-content");
+      catalogContent.prepend(searchBar);
+    }
+  }
+  function addModulesSidebarBanner() {
+    if (document.querySelector("#catalog-filter-menu") && !document.querySelector(".modules-sidebar-banner")) {
+      let modulesSidebarBanner = document.createElement("div");
+      modulesSidebarBanner.classList.add("modules-sidebar-banner");
+      modulesSidebarBanner.innerHTML = `
+      <br><br>
+      <div class="as-module-card as-card as-card--dark">
+        <div class="as-module-card__content" style="height:fit-content">
+          <img src="https://astronomer.github.io/academy-theme/dist/icons/module.svg" width="48" height="48" alt="" class="as-module-card__badge">
+          <div class="as-card__text" style="gap: 1rem">
+            <div class="as-card__text-inner">
+              <h2 class="as-card__title" style="font-size:24px;margin:16px 0;">Want a more structured learning environment? </h2>
+              <p class="as-card__subtitle" style="font-size:18px;margin:16px 0;">Explore our Learning Paths</p>
+              <p class="as-card__description" style="font-size:14px;margin:16px 0;">A learning path is a collection of modules that are hand-picked to be completed in order.</p>
+            </div>
+            <a class="as-card__button as-button" href="/page/learning-paths">Learn More</a>
+          </div>
+        </div>
+      </div>
+    `;
+      let sidebarFilterMenu = document.querySelector("#catalog-filter-menu");
+      sidebarFilterMenu && sidebarFilterMenu.insertAdjacentElement("afterend", modulesSidebarBanner);
+    }
+  }
+  function addViewAllModulesLink() {
+    if (document.querySelector(".sj-page-catalog-root")) {
+      let popularAstroModules = document.querySelector('[data-course="separator-popular-astro-modules"]');
+      let popularAirflowModules = document.querySelector('[data-course="separator-popular-airflow-modules"]');
+      let viewAllAstroModules = document.createElement("a");
+      viewAllAstroModules.innerText = "View All Modules";
+      viewAllAstroModules.classList.add(...[".as-view-all-modules"]);
+      viewAllAstroModules.setAttribute("href", "/page/all-modules#product_astro");
+      let popularAstroWrapper = document.createElement("div");
+      popularAstroWrapper.classList.add("as-popular-modules-wrapper");
+      popularAstroWrapper.innerHTML = `${popularAstroModules.outerHTML} ${viewAllAstroModules.outerHTML}`;
+      popularAstroModules.replaceWith(popularAstroWrapper);
+      let viewAllAirflowModules = document.createElement("a");
+      viewAllAirflowModules.innerText = "View All Modules";
+      viewAllAirflowModules.classList.add(...[".as-view-all-modules"]);
+      viewAllAirflowModules.setAttribute("href", "/page/all-modules#product_airflow");
+      let popularAirflowWrapper = document.createElement("div");
+      popularAirflowWrapper.classList.add("as-popular-modules-wrapper");
+      popularAirflowWrapper.innerHTML = `${popularAirflowModules.outerHTML} ${viewAllAirflowModules.outerHTML}`;
+      popularAirflowModules.replaceWith(popularAirflowWrapper);
+    }
+  }
+  async function checkUserPlanEnrollments() {
+    if (location.pathname === "/page/astronomer-certification" && skilljarUser) {
+      let packages = await fetch("https://main--polite-fudge-d421b6.netlify.app/.netlify/functions/getUserPackages", {
+        method: "POST",
+        body: JSON.stringify(skilljarUser.id)
+      }).then((res) => res.json());
+      let airflowFundamentals = packages.find((o) => o.plan.title === "Astronomer Certification for Apache Airflow Fundamentals + Exam");
+      let dagAuthoring = packages.find((o) => o.plan.title === "Astronomer Certification DAG Authoring for Apache Airflow + Exam");
+      let library = packages.find((o) => o.plan.title === "Library");
+      let starterPackage = packages.find((o) => o.plan.title === "Starter Package");
+      if (airflowFundamentals || library || starterPackage) {
+        let fundamentalsCard = document.querySelector('a[title="Certification Exam: Airflow Fundamentals"]');
+        let priceTag = fundamentalsCard.querySelector(".as-coursebox__meta-cost");
+        priceTag.innerHTML = "Free";
+      }
+      if (dagAuthoring || library || starterPackage) {
+        let dagAuthoringCard = document.querySelector('a[title="Certification Exam: DAG Authoring"]');
+        let priceTag = dagAuthoringCard.querySelector(".as-coursebox__meta-cost");
+        priceTag.innerHTML = "Free";
+      }
+    }
+  }
+  let setupComplete;
+  if (!setupComplete) {
+    setupHeaderNavigation();
+    setupCourseBox();
+    setupCourseHero();
+    setupCourseOverview();
+    setupPathCourses();
+    setupAccordions();
+    setupFooter();
+    styleProfilePage();
+    moveModulesSearchBar();
+    addModulesSidebarBanner();
+    addViewAllModulesLink();
+    checkUserPlanEnrollments();
+    setupComplete = true;
+  } else {
+    setupComplete = false;
+  }
+});
+//# sourceMappingURL=main.js.map

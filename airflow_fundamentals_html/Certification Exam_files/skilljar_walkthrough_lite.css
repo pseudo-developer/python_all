@@ -1,0 +1,93 @@
+/*START CSS styling enhancements to the default Skilljar theme*/
+
+/* Adjust logo size on desktop view only */
+@media only screen and (min-width: 768px){
+    #header .header-center-img {
+        max-height: 30px;
+    }
+}
+
+/* Add a bottom shadow to the top header bar */
+#header{
+box-shadow: 0px 1px 12px 0px rgba(0,11,18,.1);
+}
+
+/* Change background color for every catalog page. */
+.sj-page-catalog #skilljar-content {
+    background-color: #fff;
+}
+
+/* Change background color of course details page. */
+.grey-bg, .top-row-grey {
+    background-color: #FAFAFA;
+}
+
+/* Center all page/course tiles on the page*/
+#catalog-courses {
+    justify-content: center !important;
+}
+
+/* Course and Page tile stylings and sizing. Does not apply to list or search view pages*/
+ :not(.search):not(.list-view) > #catalog-content a.coursebox-container, :not(.search):not(.list-view) > #catalog-content a.sj-catalog-page {
+  border: none;
+  border-radius: 0px;
+  margin: 15px;
+  padding: 0 0 50px !important;
+  transition: .2s ease;
+ width: 275px;
+box-shadow: 0px 0px 20px 2px #dedede;
+}
+
+/* Tile Image stylings and sizing. Does not apply to list or search view pages*/
+ :not(.search):not(.list-view) > #catalog-content a.coursebox-container.course .coursebox-image {
+  min-height: 170px;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 15px 0px !important;
+}
+
+/* Set a max height for images so all tiles align horizontally. Does not apply to list or search view pages*/
+:not(.search):not(.list-view) > #catalog-content a.coursebox-container.course .coursebox-image img{
+  max-height: 155px !important;
+}
+
+/* Enlarge tile hover effect for tiles. Does not apply to list or search view pages*/
+ :not(.search):not(.list-view) > #catalog-content a.coursebox-container:hover {
+  border: none;
+  transform: scale(1.02);
+  box-shadow: 0px 0px 20px 2px #dedede;
+}
+
+/* Global styling for the titles of tiles. */
+ a.coursebox-container.course .coursebox-text {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 24px !important;
+}
+
+/* Global styling for the short description of tiles. */
+ a.coursebox-container.course .coursebox-text-description {
+  display: block;
+  padding: 0 24px !important;
+font-size: 15px;
+color: #696969;
+line-height: 1.3em;
+}
+
+/* Remove default hover effect for path/series so it does not conflict with what is added below */
+a.coursebox-container.sj-course-series:before,
+a.coursebox-container.sj-course-series:after {
+  content: none;
+}
+
+/* tile stacking effect for paths/series. Does not apply to list or search view pages  */
+:not(.search):not(.list-view) > #catalog-content a.coursebox-container.course.sj-course-series {
+box-shadow: 0 6px 20px 6px #ddd, -4px -4px #fbfbfb, -8px -8px #dedede !important;
+}
+
+/* tile hover stacking spread effect for paths/series. Does not apply to list or search view pages */
+:not(.search):not(.list-view) > #catalog-content a.coursebox-container.sj-course-series:hover {
+  box-shadow: 0 6px 20px 4px #ddd, -5px -5px #fbfbfb, -10px -10px #dedede !important;
+}
+
+/*END CSS styling enhancements to the default Skilljar theme*/
